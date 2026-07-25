@@ -402,9 +402,9 @@ body.controller-active #touch-controls { display: none; }
 
   body.game-active #game {
     top: clamp(118px, 14dvh, 148px);
-    bottom: 190px;
+    bottom: auto;
     width: 100vw;
-    height: auto;
+    height: clamp(430px, 50dvh, 760px);
   }
 
   #system-controls {
@@ -477,7 +477,8 @@ body.controller-active #touch-controls { display: none; }
 @media (orientation: portrait) and (max-height: 760px) {
   body:not(.psg1-mode).game-active #game {
     top: 108px;
-    bottom: 150px;
+    bottom: auto;
+    height: 52dvh;
   }
 
   body:not(.psg1-mode) .dpad {
@@ -545,4 +546,29 @@ body.controller-active #touch-controls { display: none; }
 @media (min-width: 901px) and (pointer: fine) {
   #touch-controls { opacity: .12; }
   #menu-screen::before { display: none; }
+}
+
+
+/* Final dead-space correction */
+@media (orientation: portrait) and (max-width: 900px) {
+  body:not(.psg1-mode) .dpad {
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+
+  body:not(.psg1-mode) .actions {
+    bottom: max(18px, env(safe-area-inset-bottom));
+  }
+
+  body.psg1-mode.game-active #game {
+    top: 78px;
+    height: calc(100dvh - 78px);
+  }
+}
+
+@media (orientation: landscape) {
+  body.game-active #game {
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+  }
 }
