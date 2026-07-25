@@ -6,11 +6,6 @@
   --green: #35ff9b;
   --red: #ff4d6d;
   --ink: #02030a;
-
-  /* Portrait layout measurements */
-  --portrait-hud-height: 150px;
-  --portrait-game-top: 154px;
-  --portrait-game-height: min(56.25vw, 38dvh);
 }
 
 * {
@@ -61,8 +56,6 @@ button {
   display: none !important;
 }
 
-/* ---------- Shared screens ---------- */
-
 .screen {
   position: absolute;
   inset: 0;
@@ -78,8 +71,8 @@ button {
   padding: 28px;
   border: 2px solid #5f64ff;
   border-radius: 20px;
-  background: linear-gradient(180deg, rgba(8, 12, 35, .97), rgba(2, 4, 14, .98));
-  box-shadow: 0 0 40px rgba(87, 48, 255, .42);
+  background: linear-gradient(180deg, rgba(8,12,35,.97), rgba(2,4,14,.98));
+  box-shadow: 0 0 40px rgba(87,48,255,.42);
 }
 
 #loading-screen {
@@ -95,7 +88,7 @@ button {
 .loading-track {
   height: 12px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .18);
+  border: 1px solid rgba(255,255,255,.18);
   border-radius: 999px;
   background: #15192d;
 }
@@ -107,8 +100,7 @@ button {
   transition: width .15s ease;
 }
 
-/* ---------- Main menu ---------- */
-
+/* Main menu */
 #menu-screen {
   isolation: isolate;
   background-color: #02030a;
@@ -118,17 +110,16 @@ button {
   background-repeat: no-repeat;
 }
 
-/* Always keep a bull visible on narrow devices */
 #menu-screen::before {
   content: "";
   position: absolute;
   z-index: 1;
-  left: max(12px, env(safe-area-inset-left));
-  bottom: 58px;
+  left: max(8px, env(safe-area-inset-left));
+  bottom: 54px;
   width: min(48vw, 420px);
-  height: min(68dvh, 560px);
+  height: min(70dvh, 570px);
   background: url("../assets/player/idle.png") left bottom / contain no-repeat;
-  filter: drop-shadow(0 0 20px rgba(155, 69, 255, .55));
+  filter: drop-shadow(0 0 20px rgba(155,69,255,.55));
   pointer-events: none;
 }
 
@@ -136,12 +127,7 @@ button {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, .02),
-    rgba(0, 0, 0, .08) 55%,
-    rgba(0, 0, 0, .86)
-  );
+  background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.08) 55%, rgba(0,0,0,.86));
 }
 
 .menu-controls {
@@ -165,22 +151,19 @@ button {
   color: #fff;
   font-weight: 1000;
   letter-spacing: 2px;
-  box-shadow: 0 0 28px rgba(155, 69, 255, .6);
+  box-shadow: 0 0 28px rgba(155,69,255,.6);
 }
 
 .small-button {
   padding: 9px 15px;
   border: 1px solid #7885c0;
   border-radius: 10px;
-  background: rgba(4, 8, 24, .88);
+  background: rgba(4,8,24,.88);
   color: #fff;
   font-weight: 900;
 }
 
-.menu-row {
-  display: flex;
-  gap: 8px;
-}
+.menu-row { display: flex; gap: 8px; }
 
 .menu-controls p {
   margin: 2px 0 0;
@@ -189,11 +172,10 @@ button {
   text-shadow: 1px 2px #000;
 }
 
-/* ---------- HUD ---------- */
-
+/* HUD */
 #hud {
   position: absolute;
-  z-index: 8;
+  z-index: 18;
   top: max(8px, env(safe-area-inset-top));
   left: 8px;
   right: 8px;
@@ -205,19 +187,17 @@ button {
 
 .hud-panel {
   padding: 7px 10px;
-  border: 2px solid rgba(94, 112, 255, .82);
+  border: 2px solid rgba(94,112,255,.82);
   border-radius: 12px;
-  background: linear-gradient(180deg, rgba(4, 8, 28, .94), rgba(2, 4, 14, .9));
-  box-shadow: 0 0 16px rgba(91, 60, 255, .3);
+  background: linear-gradient(180deg, rgba(4,8,28,.96), rgba(2,4,14,.94));
+  box-shadow: 0 0 16px rgba(91,60,255,.3);
   font-size: 12px;
   font-weight: 1000;
   text-shadow: 1px 2px #000;
 }
 
 .player-panel,
-.beast-panel {
-  min-width: 190px;
-}
+.beast-panel { min-width: 190px; }
 
 .player-panel {
   display: grid;
@@ -225,13 +205,8 @@ button {
   gap: 5px;
 }
 
-.player-panel strong {
-  color: var(--cyan);
-}
-
-.player-panel .meter {
-  grid-column: 1 / -1;
-}
+.player-panel strong { color: var(--cyan); }
+.player-panel .meter { grid-column: 1 / -1; }
 
 .center-panel {
   display: flex;
@@ -240,14 +215,12 @@ button {
   color: var(--gold);
 }
 
-.beast-panel {
-  text-align: right;
-}
+.beast-panel { text-align: right; }
 
 .meter {
   height: 9px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .2);
+  border: 1px solid rgba(255,255,255,.2);
   border-radius: 999px;
   background: #15182a;
 }
@@ -259,25 +232,18 @@ button {
   transition: width .15s ease;
 }
 
-.health i {
-  background: linear-gradient(90deg, #ff425f, #ffbf48, #42f07a);
-}
-
-.beast i {
-  background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink));
-}
-
-/* ---------- Feedback ---------- */
+.health i { background: linear-gradient(90deg, #ff425f, #ffbf48, #42f07a); }
+.beast i { background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink)); }
 
 #toast {
   position: absolute;
-  z-index: 15;
+  z-index: 19;
   top: 20%;
   left: 50%;
   padding: 10px 18px;
   border: 2px solid var(--cyan);
   border-radius: 999px;
-  background: rgba(2, 5, 18, .96);
+  background: rgba(2,5,18,.96);
   font-size: 13px;
   font-weight: 1000;
   white-space: nowrap;
@@ -292,11 +258,10 @@ button {
   transform: translate(-50%, 0);
 }
 
-/* ---------- System buttons ---------- */
-
+/* System controls */
 #system-controls {
   position: absolute;
-  z-index: 16;
+  z-index: 19;
   right: 8px;
   bottom: max(8px, env(safe-area-inset-bottom));
   display: flex;
@@ -308,16 +273,15 @@ button {
   height: 38px;
   border: 2px solid #6d64ff;
   border-radius: 10px;
-  background: rgba(3, 6, 20, .88);
+  background: rgba(3,6,20,.9);
   color: #fff;
   font-size: 18px;
 }
 
-/* ---------- Touch controls ---------- */
-
+/* Touch controls */
 #touch-controls {
   position: absolute;
-  z-index: 14;
+  z-index: 17;
   inset: 0;
   pointer-events: none;
 }
@@ -337,7 +301,7 @@ button {
   height: 52px;
   border: 2px solid #9db5dd;
   border-radius: 10px;
-  background: rgba(7, 13, 27, .90);
+  background: rgba(7,13,27,.9);
   color: #fff;
   font-size: 21px;
 }
@@ -367,25 +331,21 @@ button {
   font-weight: 1000;
 }
 
-.actions small {
-  font-size: 9px;
-}
+.actions small { font-size: 9px; }
 
 .actions .punch {
   background: radial-gradient(circle at 35% 25%, #9deeff, #1776be 64%, #062f5a);
-  box-shadow: 0 0 18px rgba(37, 232, 255, .32);
+  box-shadow: 0 0 18px rgba(37,232,255,.32);
 }
 
 .actions .kick {
   background: radial-gradient(circle at 35% 25%, #ffbad0, #c92559 64%, #611125);
-  box-shadow: 0 0 18px rgba(255, 77, 109, .32);
+  box-shadow: 0 0 18px rgba(255,77,109,.32);
 }
-
-/* ---------- Modal screens ---------- */
 
 #pause-screen,
 #end-screen {
-  background: rgba(1, 2, 8, .78);
+  background: rgba(1,2,8,.78);
   backdrop-filter: blur(4px);
 }
 
@@ -400,33 +360,28 @@ button {
   font-size: clamp(34px, 8vw, 68px);
 }
 
-/* Hide touch UI only when a controller is actually connected */
-body.controller-active #touch-controls {
-  display: none;
-}
+/* Physical controller connected */
+body.controller-active #touch-controls { display: none; }
 
-/* ---------- Phone / PSG1 portrait ---------- */
-
+/* Portrait phone + PSG1:
+   HUD at top, gameplay fills everything below it.
+   Touch controls overlay the gameplay instead of creating a giant empty zone. */
 @media (orientation: portrait) and (max-width: 900px) {
-  :root {
-    --portrait-game-top: clamp(142px, 17dvh, 190px);
-    --portrait-game-height: min(56.25vw, 34dvh);
-  }
-
   #menu-screen {
     background-size: cover;
     background-position: 58% center;
   }
 
   #menu-screen::before {
-    left: 0;
-    bottom: 80px;
-    width: 62vw;
-    height: 64dvh;
+    left: -2vw;
+    bottom: 74px;
+    width: 64vw;
+    height: 68dvh;
   }
 
   #hud {
     grid-template-columns: 1fr 1fr;
+    top: max(8px, env(safe-area-inset-top));
   }
 
   .center-panel {
@@ -446,68 +401,65 @@ body.controller-active #touch-controls {
   }
 
   body.game-active #game {
-    top: var(--portrait-game-top);
-    bottom: auto;
+    top: clamp(124px, 15dvh, 160px);
+    bottom: 0;
     width: 100vw;
-    height: var(--portrait-game-height);
+    height: auto;
   }
 
-  /* Keep browser controls from sitting over HUD */
   #system-controls {
-    top: calc(var(--portrait-game-top) + var(--portrait-game-height) + 10px);
-    right: 10px;
+    top: clamp(130px, 16dvh, 168px);
+    right: 8px;
     bottom: auto;
   }
 
-  /* Controls directly below the game instead of floating at the bottom */
   .dpad {
-    top: calc(var(--portrait-game-top) + var(--portrait-game-height) + 64px);
-    bottom: auto;
-    transform: scale(.92);
-    transform-origin: left top;
+    left: 14px;
+    bottom: max(24px, env(safe-area-inset-bottom));
+    transform: scale(.9);
+    transform-origin: left bottom;
   }
 
   .actions {
-    top: calc(var(--portrait-game-top) + var(--portrait-game-height) + 84px);
-    bottom: auto;
-    transform: scale(.92);
-    transform-origin: right top;
+    right: 14px;
+    bottom: max(28px, env(safe-area-inset-bottom));
+    transform: scale(.9);
+    transform-origin: right bottom;
   }
 
   #toast {
-    top: calc(var(--portrait-game-top) + 18px);
+    top: clamp(154px, 19dvh, 205px);
   }
 
-  /* Physical PSG1 buttons are enough */
   body.controller-active #system-controls {
     display: none;
   }
 }
 
-/* Very short portrait devices, including the PSG1 browser viewport */
+/* Short portrait viewport, like PSG1 browser with address bar visible */
 @media (orientation: portrait) and (max-height: 850px) {
-  :root {
-    --portrait-game-top: 122px;
-    --portrait-game-height: min(56.25vw, 31dvh);
-  }
-
-  .dpad {
-    top: calc(var(--portrait-game-top) + var(--portrait-game-height) + 34px);
-    transform: scale(.72);
-  }
-
-  .actions {
-    top: calc(var(--portrait-game-top) + var(--portrait-game-height) + 48px);
-    transform: scale(.72);
+  body.game-active #game {
+    top: 112px;
   }
 
   #system-controls {
-    top: calc(var(--portrait-game-top) + var(--portrait-game-height) + 4px);
+    top: 118px;
+  }
+
+  .dpad {
+    transform: scale(.72);
+    left: 8px;
+    bottom: 10px;
+  }
+
+  .actions {
+    transform: scale(.72);
+    right: 8px;
+    bottom: 14px;
   }
 }
 
-/* ---------- Landscape phone / PSG1 ---------- */
-
+/* Landscape */
 @media (orientation: landscape) and (max-height: 700px) {
   #game {
     inset: 0;
@@ -520,9 +472,7 @@ body.controller-active #touch-controls {
     background-position: center;
   }
 
-  #menu-screen::before {
-    display: none;
-  }
+  #menu-screen::before { display: none; }
 
   #hud {
     top: 5px;
@@ -555,19 +505,10 @@ body.controller-active #touch-controls {
     bottom: auto;
   }
 
-  body.controller-active #system-controls {
-    display: none;
-  }
+  body.controller-active #system-controls { display: none; }
 }
 
-/* ---------- Desktop ---------- */
-
 @media (min-width: 901px) and (pointer: fine) {
-  #touch-controls {
-    opacity: .12;
-  }
-
-  #menu-screen::before {
-    display: none;
-  }
+  #touch-controls { opacity: .12; }
+  #menu-screen::before { display: none; }
 }
