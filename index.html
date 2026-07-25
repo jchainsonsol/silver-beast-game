@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
+
+  <meta name="theme-color" content="#02030a">
+
+  <title>Silver Beast</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <main id="game-shell">
+
+    <canvas
+      id="game"
+      width="960"
+      height="540"
+      aria-label="Silver Beast game"
+    ></canvas>
+
+    <!-- Loading Screen -->
+    <section id="loading-screen" class="screen">
+      <div class="loading-card">
+        <h1>SILVER BEAST</h1>
+
+        <p id="loading-text">
+          Loading city...
+        </p>
+
+        <div class="loading-track">
+          <div id="loading-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Menu -->
+    <section id="menu-screen" class="screen hidden">
+      <div class="menu-shade"></div>
+
+      <div class="menu-controls">
+        <button
+          id="start-button"
+          class="primary-button"
+          type="button"
+        >
+          START GAME
+        </button>
+
+        <div class="menu-row">
+          <button
+            id="menu-mute"
+            class="small-button"
+            type="button"
+          >
+            🔊 SOUND
+          </button>
+
+          <button
+            id="menu-fullscreen"
+            class="small-button"
+            type="button"
+          >
+            ⛶ FULLSCREEN
+          </button>
+        </div>
+
+        <p>
+          D-PAD / STICK MOVE · A PUNCH · B KICK · START PAUSE · X FULLSCREEN
+        </p>
+      </div>
+    </section>
+
+    <!-- HUD -->
+    <section id="hud" class="hidden">
+
+      <div class="hud-panel player-panel">
+        <strong>$JCHAINS</strong>
+
+        <span>
+          🐂 × <b id="lives-value">3</b>
+        </span>
+
+        <div class="meter health">
+          <i id="health-fill"></i>
+        </div>
+      </div>
+
+      <div class="hud-panel center-panel">
+        <span>
+          SCORE <b id="score-value">0</b>
+        </span>
+
+        <span>
+          $SOL <b id="sol-value">0</b>
+        </span>
+
+        <span>
+          ROOM <b id="room-value">1/4</b>
+        </span>
+      </div>
+
+      <div class="hud-panel beast-panel">
+        <span>BEAST</span>
+
+        <div class="meter beast">
+          <i id="beast-fill"></i>
+        </div>
+
+        <span id="combo-value">
+          COMBO ×0
+        </span>
+      </div>
+
+    </section>
+
+    <!-- Feedback Toast -->
+    <div id="toast"></div>
+
+    <!-- System Controls -->
+    <div id="system-controls">
+
+      <button
+        id="mute-button"
+        type="button"
+        aria-label="Toggle sound"
+      >
+        🔊
+      </button>
+
+      <button
+        id="pause-button"
+        type="button"
+        aria-label="Pause game"
+      >
+        Ⅱ
+      </button>
+
+      <button
+        id="fullscreen-button"
+        type="button"
+        aria-label="Fullscreen"
+      >
+        ⛶
+      </button>
+
+    </div>
+
+    <!-- Touch Controls -->
+    <section
+      id="touch-controls"
+      aria-label="Touch controls"
+    >
+
+      <div class="dpad">
+
+        <button
+          class="up"
+          data-input="up"
+          type="button"
+        >
+          ▲
+        </button>
+
+        <button
+          class="left"
+          data-input="left"
+          type="button"
+        >
+          ◀
+        </button>
+
+        <button
+          class="right"
+          data-input="right"
+          type="button"
+        >
+          ▶
+        </button>
+
+        <button
+          class="down"
+          data-input="down"
+          type="button"
+        >
+          ▼
+        </button>
+
+      </div>
+
+      <div class="actions">
+
+        <button
+          class="punch"
+          data-action="punch"
+          type="button"
+        >
+          A
+          <br>
+          <small>PUNCH</small>
+        </button>
+
+        <button
+          class="kick"
+          data-action="kick"
+          type="button"
+        >
+          B
+          <br>
+          <small>KICK</small>
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- Pause Screen -->
+    <section id="pause-screen" class="screen hidden">
+      <div class="modal-card">
+
+        <h2>PAUSED</h2>
+
+        <button
+          id="resume-button"
+          class="primary-button"
+          type="button"
+        >
+          RESUME
+        </button>
+
+        <button
+          id="restart-button"
+          class="small-button"
+          type="button"
+        >
+          RESTART RUN
+        </button>
+
+      </div>
+    </section>
+
+    <!-- End Screen -->
+    <section id="end-screen" class="screen hidden">
+      <div class="modal-card">
+
+        <h2 id="end-title">
+          RUN OVER
+        </h2>
+
+        <p id="end-score">
+          SCORE 0
+        </p>
+
+        <button
+          id="play-again-button"
+          class="primary-button"
+          type="button"
+        >
+          PLAY AGAIN
+        </button>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/game.js"></script>
+</body>
+</html>
