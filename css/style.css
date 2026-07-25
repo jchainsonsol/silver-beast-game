@@ -363,9 +363,9 @@ button {
 /* Physical controller connected */
 body.controller-active #touch-controls { display: none; }
 
-/* Portrait phone + PSG1:
-   HUD at top, gameplay fills everything below it.
-   Touch controls overlay the gameplay instead of creating a giant empty zone. */
+/* Portrait phone:
+   HUD at top, large gameplay viewport in the middle,
+   touch controls anchored at the bottom. */
 @media (orientation: portrait) and (max-width: 900px) {
   #menu-screen {
     background-size: cover;
@@ -401,61 +401,95 @@ body.controller-active #touch-controls { display: none; }
   }
 
   body.game-active #game {
-    top: clamp(124px, 15dvh, 160px);
-    bottom: 0;
+    top: clamp(118px, 14dvh, 148px);
+    bottom: 190px;
     width: 100vw;
     height: auto;
   }
 
   #system-controls {
-    top: clamp(130px, 16dvh, 168px);
+    top: clamp(124px, 15dvh, 156px);
     right: 8px;
     bottom: auto;
   }
 
   .dpad {
     left: 14px;
-    bottom: max(24px, env(safe-area-inset-bottom));
-    transform: scale(.9);
+    bottom: max(18px, env(safe-area-inset-bottom));
+    transform: scale(.88);
     transform-origin: left bottom;
   }
 
   .actions {
     right: 14px;
-    bottom: max(28px, env(safe-area-inset-bottom));
-    transform: scale(.9);
+    bottom: max(24px, env(safe-area-inset-bottom));
+    transform: scale(.88);
     transform-origin: right bottom;
   }
 
   #toast {
-    top: clamp(154px, 19dvh, 205px);
-  }
-
-  body.controller-active #system-controls {
-    display: none;
+    top: clamp(150px, 18dvh, 190px);
   }
 }
 
-/* Short portrait viewport, like PSG1 browser with address bar visible */
-@media (orientation: portrait) and (max-height: 850px) {
-  body.game-active #game {
-    top: 112px;
+/* PSG1/controller portrait:
+   Remove all touch controls and give the game nearly the full screen.
+   This class is added by controls.js when a controller or PSG1 key is detected. */
+@media (orientation: portrait) and (max-width: 900px) {
+  body.psg1-mode #touch-controls,
+  body.psg1-mode #system-controls {
+    display: none !important;
   }
 
-  #system-controls {
-    top: 118px;
+  body.psg1-mode #hud {
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    gap: 4px;
   }
 
-  .dpad {
-    transform: scale(.72);
+  body.psg1-mode .hud-panel {
+    padding: 3px 5px;
+    border-width: 1px;
+    border-radius: 8px;
+    font-size: 7px;
+  }
+
+  body.psg1-mode .meter {
+    height: 6px;
+  }
+
+  body.psg1-mode.game-active #game {
+    top: 82px;
+    bottom: 0;
+    width: 100vw;
+    height: auto;
+  }
+
+  body.psg1-mode #toast {
+    top: 94px;
+    font-size: 9px;
+    padding: 6px 10px;
+  }
+}
+
+/* Short phones */
+@media (orientation: portrait) and (max-height: 760px) {
+  body:not(.psg1-mode).game-active #game {
+    top: 108px;
+    bottom: 150px;
+  }
+
+  body:not(.psg1-mode) .dpad {
+    transform: scale(.70);
     left: 8px;
-    bottom: 10px;
+    bottom: 8px;
   }
 
-  .actions {
-    transform: scale(.72);
+  body:not(.psg1-mode) .actions {
+    transform: scale(.70);
     right: 8px;
-    bottom: 14px;
+    bottom: 12px;
   }
 }
 
